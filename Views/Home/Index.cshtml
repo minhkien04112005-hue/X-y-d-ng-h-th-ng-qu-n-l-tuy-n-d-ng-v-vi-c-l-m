@@ -1,0 +1,48 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<section class="hero-panel">
+    <div>
+        <span class="eyebrow">TRANG THÀNH VIÊN</span>
+        <h1>Xin chào, @Model.DisplayName</h1>
+        <p>Bạn đã đăng nhập thành công.</p>
+    </div>
+</section>
+
+<section class="section-heading">
+    <div>
+        <h2>Việc làm đang tuyển</h2>
+        <p>Các tin chưa bị xóa và vẫn còn hạn ứng tuyển.</p>
+    </div>
+    <span class="count-badge">@Model.ActiveJobs.Count tin</span>
+</section>
+
+@if (Model.ActiveJobs.Count == 0)
+{
+    <div class="empty-state">
+        <h3>Chưa có tin tuyển dụng còn hạn</h3>
+        <p>Bạn có thể tạo dữ liệu qua Swagger rồi tải lại trang này.</p>
+    </div>
+}
+else
+{
+    <div class="job-grid">
+        @foreach (Job job in Model.ActiveJobs)
+        {
+            <article class="job-card">
+                <div class="job-card-top">
+                    <span class="job-id">JOB #@job.Id</span>
+                    <span class="status-dot">Đang tuyển</span>
+                </div>
+                <h3>@job.Title</h3>
+                <p>@(string.IsNullOrWhiteSpace(job.Description) ? "Chưa có mô tả công việc." : job.Description)</p>
+                <div class="job-meta">
+                    <span>Hạn: <strong>@job.Deadline.ToString("dd/MM/yyyy")</strong></span>
+                    <span>Tạo: @job.CreatedAt.ToString("dd/MM/yyyy")</span>
+                </div>
+            </article>
+        }
+    </div>
+}

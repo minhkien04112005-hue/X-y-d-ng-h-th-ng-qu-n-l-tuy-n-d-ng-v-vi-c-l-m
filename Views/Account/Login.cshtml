@@ -1,0 +1,78 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<section class="auth-shell">
+    <div class="auth-intro">
+        <h1>Chào mừng bạn quay lại</h1>
+        <p>Đăng nhập để truy cập trang tuyển dụng và các chức năng dành cho thành viên.</p>
+<div class="auth-benefits">
+    <div class="benefit-item">
+        <div class="benefit-number">01</div>
+        <div class="benefit-content">
+            <strong>Khám phá cơ hội việc làm</strong>
+            <span>Xem nhanh các vị trí tuyển dụng đang được cập nhật trên hệ thống.</span>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-number">02</div>
+        <div class="benefit-content">
+            <strong>Bảo mật tài khoản</strong>
+            <span>Thông tin đăng nhập của bạn được lưu trữ và xử lý an toàn.</span>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-number">03</div>
+        <div class="benefit-content">
+            <strong>Truy cập nhanh chóng</strong>
+            <span>Đăng nhập một lần để tiếp tục sử dụng các chức năng của hệ thống.</span>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <div class="auth-card">
+        <div class="auth-card-header">
+            <h2>Đăng nhập</h2>
+            <p>Nhập thông tin tài khoản của bạn.</p>
+        </div>
+
+        @if (TempData["SuccessMessage"] is string successMessage)
+        {
+            <div class="alert success">@successMessage</div>
+        }
+
+        <form asp-action="Login" method="post" novalidate>
+            <input asp-for="ReturnUrl" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" autocomplete="email" placeholder="name@example.com" />
+                <span asp-validation-for="Email" class="field-validation"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" autocomplete="current-password" placeholder="Nhập mật khẩu" />
+                <span asp-validation-for="Password" class="field-validation"></span>
+            </div>
+
+            <label class="check-row">
+                <input asp-for="RememberMe" />
+                <span>Ghi nhớ đăng nhập trên thiết bị này</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+        </form>
+
+        <p class="auth-switch">
+            Chưa có tài khoản?
+            <a asp-action="Register">Đăng ký ngay</a>
+        </p>
+    </div>
+</section>

@@ -1,0 +1,79 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<section class="auth-shell">
+    <div class="auth-intro">
+        <span class="eyebrow">TẠO TÀI KHOẢN</span>
+        <h1>Bắt đầu với hệ thống tuyển dụng</h1>
+        <p>Tạo tài khoản để đăng nhập vào giao diện của hệ thống.</p>
+<div class="auth-benefits">
+    <div class="benefit-item">
+        <div class="benefit-number">01</div>
+        <div class="benefit-content">
+            <strong>Tạo tài khoản nhanh</strong>
+            <span>Chỉ cần một vài thông tin cơ bản để bắt đầu sử dụng hệ thống.</span>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-number">02</div>
+        <div class="benefit-content">
+            <strong>Thông tin được bảo vệ</strong>
+            <span>Mật khẩu được mã hóa trước khi lưu trữ trong cơ sở dữ liệu.</span>
+        </div>
+    </div>
+
+    <div class="benefit-item">
+        <div class="benefit-number">03</div>
+        <div class="benefit-content">
+            <strong>Sẵn sàng sử dụng</strong>
+            <span>Sau khi đăng ký, bạn có thể đăng nhập và truy cập hệ thống ngay.</span>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <div class="auth-card">
+        <div class="auth-card-header">
+            <h2>Đăng ký</h2>
+            <p>Điền đầy đủ thông tin bên dưới.</p>
+        </div>
+
+        <form asp-action="Register" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <div class="form-group">
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" class="form-control" autocomplete="name" placeholder="Nguyễn Văn A" />
+                <span asp-validation-for="FullName" class="field-validation"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" autocomplete="email" placeholder="name@example.com" />
+                <span asp-validation-for="Email" class="field-validation"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" autocomplete="new-password" placeholder="Ít nhất 6 ký tự" />
+                <span asp-validation-for="Password" class="field-validation"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="Nhập lại mật khẩu" />
+                <span asp-validation-for="ConfirmPassword" class="field-validation"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Tạo tài khoản</button>
+        </form>
+
+        <p class="auth-switch">
+            Đã có tài khoản?
+            <a asp-action="Login">Đăng nhập</a>
+        </p>
+    </div>
+</section>
